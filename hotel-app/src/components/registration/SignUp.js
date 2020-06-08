@@ -6,7 +6,7 @@ export default class Registration extends Component {
 		super(props);
 		this.state = {
 			username: "",
-			phoneNumber: "",
+			password: "",
 			registrationErrors: ""
 		}
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -15,7 +15,7 @@ export default class Registration extends Component {
 
 	handleChange(event) {
 		this.setState({
-			[event.target.username]: event.target.value
+			[event.target.name]: event.target.value
 		})
 	}
 

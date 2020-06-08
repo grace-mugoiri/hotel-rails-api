@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SignUp from './registration/SignUp';
 import Login from './registration/Login';
 import axios from 'axios';
-// import './Home.css'
+import './Home.css'
 
 export default class Home extends Component {
 	constructor(props) {
