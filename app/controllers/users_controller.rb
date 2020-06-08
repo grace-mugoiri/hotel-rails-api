@@ -23,9 +23,9 @@ class UsersController < ApplicationController
 	def login
 		@user = User.find_by(username: params[:user][:username])
 		if @user
-			render json: @user, status: :accepted
+			render json: @user, status: 200
 		else
-			render json: @user, status, status: :not_found
+			render json: @user, status: 400
 		end
 	end
 
