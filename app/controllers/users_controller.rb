@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+	before_action :set_user, only: [:show, :update]
 
 	def index
 		@users = User.all
@@ -16,6 +17,15 @@ class UsersController < ApplicationController
 			render json: @user
 		else
 			render json: {error: 'Unable to create User!'}, status: 400
+		end
+	end
+
+	def login
+		@user = User.find_by(username: params[:user][:username])
+		if @user
+			render json: @user, status: :accepted
+		else
+			render json: @user, status, status: :not_found
 		end
 	end
 
@@ -40,8 +50,13 @@ class UsersController < ApplicationController
 	end
 
 	private
+
 	def user_params
 		params.require(:user).permit(:username, :password)
+	end
+
+	def set_user
+		@user = User.find(params[:id])
 	end
 
 end

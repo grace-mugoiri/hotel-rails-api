@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_03_083034) do
+ActiveRecord::Schema.define(version: 2020_06_05_083101) do
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "hotel_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["hotel_id"], name: "index_favorites_on_hotel_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
 
   create_table "hotels", force: :cascade do |t|
     t.integer "rooms"
@@ -27,4 +36,6 @@ ActiveRecord::Schema.define(version: 2020_06_03_083034) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "favorites", "hotels"
+  add_foreign_key "favorites", "users"
 end
