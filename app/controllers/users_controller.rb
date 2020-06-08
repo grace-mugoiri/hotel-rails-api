@@ -20,6 +20,10 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def favorited?(hotel)
+		favorites.find_by(hotel_id: hotel.id).present?
+	end
+
 	def login
 		@user = User.find_by(username: params[:user][:username])
 		if @user
