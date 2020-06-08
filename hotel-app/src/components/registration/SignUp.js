@@ -5,7 +5,7 @@ export default class Registration extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			name: "",
+			username: "",
 			phoneNumber: "",
 			registrationErrors: ""
 		}
@@ -15,20 +15,20 @@ export default class Registration extends Component {
 
 	handleChange(event) {
 		this.setState({
-			[event.target.name]: event.target.value
+			[event.target.username]: event.target.value
 		})
 	}
 
 	handleSubmit(event) {
 		const {
-			name,
-			phoneNumber
+			username,
+			password
 		} = this.state;
 
 		axios.post("http://localhost:3000/users", {
 			user: {
-				name: name,
-				phoneNumber: phoneNumber,
+				username: username,
+				password: password,
 			}
 		},
 			{ withCredentials: true }
@@ -48,16 +48,16 @@ export default class Registration extends Component {
 		return (
 			<div>
 				<form onSubmit={this.handleSubmit}>
-					<input type="name"
-						name="name"
-						placeholder="name"
-						value={this.state.name}
+					<input type="text"
+						name="username"
+						placeholder="username"
+						value={this.state.username}
 						onChange={this.handleChange} required
 					/>
-					<input type="phoneNumber"
-						name="phoneNumber"
-						placeholder="phoneNumber"
-						value={this.state.phoneNumber}
+					<input type="password"
+						name="password"
+						placeholder="password"
+						value={this.state.password}
 						onChange={this.handleChange} required
 					/>
 

@@ -5,7 +5,8 @@ export default class Login extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			name: ""
+			username: '',
+			password: ''
 		}
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChange = this.handleChange.bind(this);
@@ -13,18 +14,18 @@ export default class Login extends Component {
 
 	handleChange(event) {
 		this.setState({
-			[event.target.name]: event.target.value
+			[event.target.username]: event.target.value
 		})
 	}
 
 	handleSubmit(event) {
 		const {
-			name
+			username
 		} = this.state;
 
 		axios.post("http://localhost:3000/sessions", {
 			user: {
-				name: name
+				username: username
 			}
 		},
 			{ withCredentials: true }
@@ -44,10 +45,10 @@ export default class Login extends Component {
 		return (
 			<div>
 				<form onSubmit={this.handleSubmit}>
-					<input type="name"
-						name="name"
-						placeholder="name"
-						value={this.state.name}
+					<input type="text"
+						name="username"
+						placeholder="username"
+						value={this.state.username}
 						onChange={this.handleChange} required
 					/>
 
