@@ -29,6 +29,10 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def favorited?(hotel)
+		favorites.find_by(hotel_id: hotel.id).present?
+	end
+
 	def update
 		@user = User.find(params[:id])
 		if @user
